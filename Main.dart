@@ -1,9 +1,9 @@
-import "dart:io";
+void hi(String name) {
+  print("hi! $name");
+}
 
 void main() {
-  print("enter name");
-  String? name = stdin.readLineSync();
-  print("Name is $name");
-  print("this is by dave");
-  print("Trial status");
+  hi("Dave");
+  hi("raj");
+  hi("som");
 }
