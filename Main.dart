@@ -1,9 +1,7 @@
-void hi(String name) {
-  print("hi! $name");
+void hi(String name, int age) {
+  print("Hi! $name welcome! you are $age years old! ");
 }
 
 void main() {
-  hi("Dave");
-  hi("raj");
-  hi("som");
+  hi("Dave", 22);
 }
