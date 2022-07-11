@@ -1,32 +1,36 @@
-class Pokemon {
-  String name;
-  int level, hp, dmg;
-  Pokemon(this.name, this.level, this.hp, this.dmg);
-  void attack(Pokemon o, Pokemon p) {
-    print("${o.name} attack!");
-    print("${p.name} HP ==> ");
-    print(p.hp -= o.dmg);
-  }
+import "dart:io";
 
-  int getHP() {
-    return this.hp;
+class Quiz {
+  String? question;
+  double? answer;
+  Quiz(String question, double answer) {
+    this.question = question;
+    this.answer = answer;
   }
 }
 
+double prompt(String prompt) {
+  print("$prompt");
+  double answer = double.parse(stdin.readLineSync()!);
+  return answer;
+}
+
 void main() {
-  Pokemon p1 = new Pokemon("pika", 10, 100, 25);
-  Pokemon p2 = new Pokemon("evie", 10, 150, 5);
-  while (p1.getHP() >= 0 || p2.getHP() >= 0) {
-    if (p1.getHP() == 0 || p2.getHP() == 0) {
-      if (p1.getHP() == 0) {
-        print("${p2.name} is the winner!");
-      } else if (p2.getHP() == 0) {
-        print("${p1.name} is the winner!");
-      }
-      break;
+  int c = 0;
+  print("How many number of questions do you want to ask? ");
+  List<Quiz> q = [
+    Quiz("3 + 5", 8.0),
+    Quiz("10 - 7", 3.0),
+    Quiz("100 * 9", 900.0),
+  ];
+  for (Quiz i in q) {
+    double answer = prompt(i.question!);
+    if (answer == i.answer) {
+      print("Correct Answer! $answer");
+      c++;
+    } else {
+      print("Incorrect Answer! Correct answer is : ${i.answer}");
     }
-    p1.attack(p1, p2);
-    p2.attack(p2, p1);
-    print("==================================");
   }
+  print("You have scored ${c / q.length * 100}");
 }
